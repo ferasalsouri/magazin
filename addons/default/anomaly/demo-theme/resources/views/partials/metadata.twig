@@ -1,0 +1,28 @@
+
+
+
+
+<title>Magazine|{{ trans(template.meta_title) }}</title>
+
+{% if(app.session.get('_locale')=="en" )  %}
+
+{{ asset_add('style.css','anomaly.theme.demo::styles/style.css') }}{{ asset_style('style.css') }}
+
+{% elseif(app.session.get('_locale')=="ar" )   %}
+
+    {{ asset_add('style.rtl.css','anomaly.theme.demo::styles/style.rtl.css') }}{{ asset_style('style.rtl.css') }}
+    {% else %}
+    {{ asset_add('style.css','anomaly.theme.demo::styles/style.css') }}{{ asset_style('style.css') }}
+
+{% endif %}
+{{ asset_add('swipemenu.css','anomaly.theme.demo::styles/swipemenu.css') }}{{ asset_style('swipemenu.css') }}
+{{ asset_add('flexslider.css','anomaly.theme.demo::styles/flexslider.css') }}{{ asset_style('flexslider.css') }}
+{{ asset_add('bootstrap.css','anomaly.theme.demo::styles/bootstrap.css') }}{{ asset_style('bootstrap.css') }}
+{{ asset_add('bootstrap-responsive.css','anomaly.theme.demo::styles/bootstrap-responsive.css') }}{{ asset_style('bootstrap-responsive.css') }}
+{{ asset_add('jquery.simplyscroll.css','anomaly.theme.demo::styles/jquery.simplyscroll.css') }}{{ asset_style('jquery.simplyscroll.css') }}
+{{ asset_add('jPages.css','anomaly.theme.demo::styles/jPages.css') }}{{ asset_style('jPages.css') }}
+{{ asset_add('jquery.rating.css','anomaly.theme.demo::styles/jquery.rating.css') }}{{ asset_style('jquery.rating.css') }}
+{{ asset_add('ie.css','anomaly.theme.demo::styles/ie.css') }}{{ asset_style('ie.css') }}
+
+
+

@@ -1,0 +1,20 @@
+
+{% for post in posts %}
+    <div class="row-fluid">
+        <article class="post">
+            <a class="image_thumb_zoom" href="{{ post.route('view') }}" title="{{ post.title }}" rel="bookmark">
+                {{ post.b.make.fit(371, 177).class("attachment-post-first wp-post-image")|raw }}
+            </a>
+            <h4 class="post-title">
+                <a href="{{ post.route('view') }}" title="{{ post.title }}" rel="bookmark">{{ post.title }}</a>
+            <span class="date">
+                    {{ post.publish_at.format(config_get('streams::datetime.date_format')) }}
+              </span>
+            </h4>
+            <p>{{substr( post.summary,0,100) }} ..</p>
+        </article>
+
+        <div class="clearfix"></div>
+    </div>
+{% endfor %}
+

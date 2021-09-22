@@ -1,0 +1,29 @@
+
+    <div class="row-fluid">
+        <div class="brnews span9">
+            <h3><b style="color: black;">Breaking News</b></h3>
+            <ul id="scroller">
+                {% set posts = entries('posts').orderBy('slug','ASC').get() %}
+
+                {% for post in posts %}
+                <li><p><a href="{{ post.route('view') }}" title="{{ post.title}}" rel="bookmark"><span class="title">  {{ post.title }}</span>{{ post.summary }} </a></p></li>
+                {% endfor %}
+                {{ posts|raw }}
+
+            </ul>
+        </div>
+
+        <div class="search span3">
+            <div class="offset1">
+                {% set results = entries('posts').search('title','slug').where('active', true).get() %}
+
+
+                <form method="get" id="searchform" action="{{url('search')  }}">
+                    <p><input type="text"  name="search" value="{{ q }}" placeholder="Search here...." onfocus="if ( this.value == '{{ results.slug }}' ) { this.value = '{{ results.slug }}'; }" onblur="if ( this.value == ' {{ results.title }}' ) { this.value = '{{ results.slug }}'; }" name="s" id="s" />
+                        <input type="submit" id="searchsubmit" value="{{ q }}" /></p>
+                </form>
+
+                {{ results|raw }}
+            </div>
+        </div>
+    </div>

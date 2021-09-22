@@ -1,0 +1,12 @@
+{% extends 'Anomaly.theme.demo::layouts/default' %}
+
+{% block content %}
+
+   <h1>{{ video.title }}</h1><br>
+
+    <iframe width="560" height="315" src="{{ video.video.embed |raw }}" frameborder="0" allowfullscreen></iframe>
+    <hr>
+    <small>{{ video.description }}</small>
+
+
+{% endblock %}

@@ -1,0 +1,77 @@
+
+
+
+
+
+
+
+    <div id="home-top">
+        <h3 class="title"><span>Hot Stuff</span></h3>
+
+        <ul class="bxslider">
+
+            {% set posts = entries('posts').recent().get() %}
+
+
+            {% include "anomaly.theme.demo::site/posts" with {"posts": posts} %}
+
+
+
+
+
+            {{ posts.links }}
+
+
+
+
+
+        </ul>
+    </div>
+
+
+
+    <!--  -->
+    <!--  -->
+    <!--  -->
+    <!--  -->
+    <!--  -->
+    <div id="home-middle" class="clearfix">
+        <div class="left span6">
+            <h3 class="title"><a href="#" title="Game News"><span>Game News</span></a></h3>
+            {% set posts = entries('posts').where('category_id','3').orderBy('slug','ASC').limit(2).get() %}
+
+
+            {% include "anomaly.theme.demo::site/NewGames" with {"posts": posts} %}
+
+            {{ posts.links }}
+        </div>
+        <!--  -->
+        <!--  -->
+        <!--  -->
+        <!--  -->
+        <!--  -->
+        <div class="right span6">
+            <h3 class="title"><a href="#" title="Sport News"><span>Sport News</span></a></h3>
+            <div class="row-fluid">
+
+
+                {% set posts = entries('posts').where('category_id','2').orderBy('created_at','Desc').limit(3).get()  %}
+
+
+                {% include "anomaly.theme.demo::site/sportNews" with {"posts": posts} %}
+
+                {{ posts.links }}
+
+                <div class="clearfix"></div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+
+

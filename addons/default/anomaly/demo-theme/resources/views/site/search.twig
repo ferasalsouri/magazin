@@ -1,0 +1,58 @@
+{% extends 'anomaly.theme.demo::layouts/default' %}
+
+{% block content %}
+<article id="post-0" class="post no-results not-found">
+    <div class="entry-content">
+        <p>Apologies, but no results were found for the requested search. Perhaps search another keyword will help find a related post.</p>
+
+
+        <form method="get" id="searchform" action="{{ url('/search') }}">
+
+            <label class="hidden" for="s">{{ search.title }}</label>
+
+
+            <p><input type="text" name="search" value="{{ q }}"  placeholder="{{ search }}" onfocus="if ( this.value == '{{ q }}' ) { this.value = '{{ q }}'; }" onblur="if ( this.value == '{{ q }}' ) { this.value = '{{ q }}'; }" name="s" id="s">
+
+
+                <input type="submit" id="searchsubmit" value=" search"></p>
+
+        </form>
+
+
+    </div><!-- .entry-content -->
+</article>
+
+{% for search in data %}
+<article id="post-532" class="post-532 product type-product status-publish has-post-thumbnail hentry instock">
+    <h2 class="entry-title">
+        <span class="the_title"><a href="{{ search.route('view') }}" title="{{ search.title }}" rel="bookmark">{{ search.title }}</a></span>
+        <span class="entry-cat"></span>
+    </h2>
+
+    <div class="entry-meta row-fluid"><ul class="clearfix"><li>
+                <img alt="" src="{{ image_url("anomaly.theme.demo::images/website-bg.png") }}" class="avatar avatar-15 photo" height="15" width="15">
+               {{ search.author.display_name }}
+            </li>
+            <li><img src='{{ image_url("anomaly.theme.demo::images/time.png") }}' alt=""><time class="date" datetime="{{ search.publish_at.iso }}">
+                    {{ search.publish_at.format(config_get('streams::datetime.date_format')) }}
+                </time></li>
+
+
+           </ul></div>
+    <a href="{{ search.route('view') }}" title="Permalink to Nanamica Graphic Tee" rel="bookmark">
+        {{ search.b.make.class('attachment-single wp-post-image')|raw }}
+    </a>
+
+    <div class="entry-content">
+        <div id="stcpDiv">
+
+          <p>{{ search.summary  }}</p>
+        </div>
+    </div>
+
+</article>
+
+
+{% endfor %}
+{{ searchs.render |raw }}
+{% endblock %}

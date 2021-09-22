@@ -1,0 +1,27 @@
+{% if template.breadcrumbs.count() %}
+    <ol class="breadcrumb">
+        {% for breadcrumb, href in template.breadcrumbs %}
+            {% if loop.last ? 'active' %}
+                <li class="active">
+                    {{ trans(breadcrumb) }}
+                </li>
+            {% else %}
+                <li>
+                    <a href="{{ href }}">
+                        {{ trans(breadcrumb) }}
+                    </a>
+                </li>
+            {% endif %}
+        {% endfor %}
+    </ol>
+{% endif %}
+
+ {% if (count(errors) > 0)%}
+<div class="alert alert-danger">
+    <ul>
+   {% for error in errors.all() %}
+        <li>{{ error }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}

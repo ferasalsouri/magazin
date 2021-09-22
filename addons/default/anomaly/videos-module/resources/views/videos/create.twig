@@ -1,0 +1,11 @@
+{% extends 'anomaly.theme.demo::layouts/default' %}
+
+
+
+{% block content %}
+    <h1>Create New Video</h1>
+
+    {% set form= form('videos','videos').skips(['poster','categories']).redirect('videos').get() %}
+
+    {{ form|raw }}
+{% endblock %}

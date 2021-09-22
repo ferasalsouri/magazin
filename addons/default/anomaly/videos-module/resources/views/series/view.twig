@@ -1,0 +1,32 @@
+{% extends 'anomaly.theme.demo::layouts/default' %}
+
+{% block content %}
+
+   <h1>{{ series.title }}</h1><br>
+
+
+
+    <small>{{ series.description }}</small>
+    <hr>
+    {% set videos = series.video().paginate(10) %}
+
+        {% for video in videos %}
+            <article id="post-532" class="post-532 product type-product status-publish has-post-thumbnail hentry instock">
+                <h2 class="entry-title">
+                    <span class="the_title"><a href="{{ video.route('view') }}" title="{{ video.title }}" rel="bookmark">{{ video.title }}</a></span>
+
+                </h2>
+                <div class="entry-content">
+                    <div id="stcpDiv">
+
+                        <p>{{ video.description  }}</p>
+                    </div>
+                </div>
+
+            </article>
+
+        {% endfor %}
+
+    {{ videos.render|raw }}
+
+{% endblock %}

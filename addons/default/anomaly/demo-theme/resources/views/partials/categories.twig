@@ -1,0 +1,70 @@
+
+
+
+
+
+
+
+<div id="sidebar" class="span4">
+
+    <div class="widget widget_latestpost">
+
+
+        <h3 class="title"><span>Recent Posts</span></h3>
+        <div class="latest-posts widget">
+
+            {%  set posts = entries('posts').where('category_id','2').orderBy('created_at','Desc').limit(3).get() %}
+            {% for post in posts %}
+
+
+            <div class="latest-post clearfix">
+                <a href="{{ post.route('view') }}">{{ post.b.make.fit(225, 136).class("thumb fl")|raw }}</a>
+                <h4><a href="{{ post.route('view') }}" rel="bookmark" title="{{ post.title }}">{{ post.title }}</a></h4>
+                <p>{{ substr(post.summary,0,150) }}..</p>
+
+                <div class="post-time">{{ post.publish_at.format(config_get('streams::datetime.date_format')) }}</div>
+                <div class="ratings" style="float: none">
+                    <span class="star-rating-control"><div class="rating-cancel" style="display: none;"><a title="Cancel Rating"></a></div><div role="text" aria-label="" class="star-rating rater-2 star star-rating-applied star-rating-readonly star-rating-on"><a title="1">1</a></div><div role="text" aria-label="" class="star-rating rater-2 star star-rating-applied star-rating-readonly star-rating-on"><a title="2">2</a></div><div role="text" aria-label="" class="star-rating rater-2 star star-rating-applied star-rating-readonly star-rating-on"><a title="3">3</a></div><div role="text" aria-label="" class="star-rating rater-2 star star-rating-applied star-rating-readonly star-rating-on"><a title="4">4</a></div><div role="text" aria-label="" class="star-rating rater-2 star star-rating-applied star-rating-readonly"><a title="5">5</a></div></span><input class="star star-rating-applied star-rating-readonly" type="radio" name="recent-post-2" value="1" disabled="disabled" style="display: none;">
+                    <input class="star star-rating-applied star-rating-readonly" type="radio" name="recent-post-2" value="2" disabled="disabled" style="display: none;">
+                    <input class="star star-rating-applied star-rating-readonly" type="radio" name="recent-post-2" value="3" disabled="disabled" style="display: none;">
+                    <input class="star star-rating-applied star-rating-readonly" type="radio" name="recent-post-2" value="4" disabled="disabled" checked="checked" style="display: none;">
+                    <input class="star star-rating-applied star-rating-readonly" type="radio" name="recent-post-2" value="5" disabled="disabled" style="display: none;">
+                </div>
+            </div>
+
+
+            {% endfor %}
+            {{ posts.render|raw }}
+        </div>
+    </div>
+
+<!-- ----- -->
+<!-- ----- -->
+<!-- ----- -->
+<!-- ----- -->
+<!-- ----- -->
+
+    <div class="widget widget_latestpost"><h3 class="title"><span>Videos</span></h3>
+        <div class="latest-posts">
+            {% set videos = entries('videos').orderBy('slug','ASC').limit(1).get() %}
+            {% for video in videos %}
+            <article class="post">
+                <iframe width="560" height="315" src="{{ video.video.embed |raw }}" frameborder="0" allowfullscreen></iframe>
+
+
+                <h4 class="post-title">
+                    <a href="{{  video.route('view')}}" title="{{ video.title}}" rel="bookmark">{{ video.title}}</a>
+                    <span class="date">{{ post.publish_at.format(config_get('streams::datetime.date_format')) }}</span>
+                </h4>
+                <p>{{ substr(video.description,0,150) }}..</p>
+            </article>
+            {% endfor %}
+            {{ videos.render|raw }}
+
+
+        </div>
+    </div>
+
+
+</div><!-- sidebar -->
+

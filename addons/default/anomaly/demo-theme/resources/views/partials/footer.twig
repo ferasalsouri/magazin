@@ -1,0 +1,104 @@
+<footer id="footer" class="row-fluid">
+    <div id="footer-widgets" class="container">
+        <div class="footer-widget span3 block1">
+            <div class="widget widget_latestpost">
+                <h3 class="title"><span>Latest News</span></h3>
+                <div class="latest-posts widget">
+                    {%  set posts = entries('posts').where('category_id','1').orderBy('slug','ASC').limit(2).get() %}
+                    {% for post in posts %}
+
+                    <div class="latest-post clearfix">
+                        <h4>{{ post.title }}</h4>
+                        <a href="{{ post.route('view') }}">{{ post.b.make.fit(225, 136).class("thumb fl")|raw }}{{substr( post.summary,0,100) }} ..</a>
+                        <h4><a href="{{ post.route('view') }}" rel="bookmark" title="{{ post.title }}"></a></h4>
+                        <div class="post-time"> {{ post.publish_at.format(config_get('streams::datetime.date_format')) }}</div>
+                        <hr>
+                    </div>
+                    {% endfor %}
+                    {{ posts.render|raw }}
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="footer-widget span3 block3">
+            <div class="widget">
+                <h3 class="title"><span>{{ trans('anomaly.module.posts::message.Tags', {'tag': tag}) }}</span></h3>
+                <div class="tagcloud">
+                    {%  set posts = entries('posts').orderBy('created_at').get() %}
+                    {% for post in posts %}
+
+                        <div class="tags">
+                            {% for tag in post.tags.value %}
+                                <a href="{{ url_route('anomaly.module.posts::tags.view', {'tag': tag}) }}">
+                                    {{ tag }}
+                                </a>
+                            {% endfor %}
+                        </div>
+
+                    {%  endfor%}
+                   {{ posts.render |raw }}
+
+
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-widget span3 block4">
+            <div class="widget">
+                <h3 class="title"><span>Social Media</span></h3>
+                <div class="socmed clearfix">
+                    {% set SocialMedia = entries('website_setting','SocialNetwork').limit(1).get() %}
+                    <ul>
+
+                        {% for social in SocialMedia  %}
+
+                        <li>
+                            <a href="{{ social.Twitter }}"><img src='{{ image_url("anomaly.theme.demo::images/twitter-icon.png") }}' alt=""></a>
+
+                        </li>
+                        <li>
+                            <a href="{{ social.Facebook }}"><img src='{{ image_url("anomaly.theme.demo::images/fb-icon.png") }}' alt=""></a>
+
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {{ SocialMedia.render|raw }}
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-widget span6 block5">
+            <img class="footer-logo" src='{{ image_url("anomaly.theme.demo::images/footer-logo.png") }}' alt="Magazine">
+            <div class="footer-text">
+                <h4>About Magazine</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eius mod tempor incididu... </p>
+            </div><div class="clearfix"></div>
+        </div>
+
+    </div><!-- footer-widgets -->
+
+
+    <div id="site-info" class="container">
+
+        <div id="footer-nav" class="fr">
+            <ul class="menu">
+                {% for link in links('footer').get() %}
+                    <li>
+                        <a href="{{ link.url }}">{{ link.title }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div id="credit" class="fl">
+            Copyright &copy; Your Website {{ 'now'|date("Y") }}
+        </div>
+
+    </div><!-- .site-info -->
+
+
+
+
+</footer>

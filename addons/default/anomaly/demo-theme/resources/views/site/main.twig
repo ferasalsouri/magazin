@@ -1,0 +1,54 @@
+{% extends 'anomaly.theme.demo::layouts/default' %}
+
+{% block content %}
+
+
+
+
+    <div id="slider" class="clearfix">
+        <div id="slide-left" class="flexslider span8">
+            <div class="flex-viewport" style="overflow: hidden; position: relative;">
+                <ul class="slides" style="width: 1200%; transition-duration: 0s; transform: translate3d(-507px, 0px, 0px);">
+                    {% set posts=entries('posts').get() %}
+                    {% for post in posts %}
+                        <li data-thumb="{{ image_url(post.b) }}" class="clone" style="width: 507px; float: left; display: block;">
+                            <a href="{{ post.route('view') }}" title="{{ post.title }}" rel="bookmark">
+                                {{ post.b.make.fit(546, 291)|raw }}
+                            </a>
+                            <div class="entry">
+                                <h4>{{ post.title }}</h4>
+                                <p>{{substr( post.summary,0,60) }} ..</p>
+                            </div>
+                        </li>
+                    {% endfor %}
+                    {{ posts.render|raw }}
+                </ul>
+            </div>
+
+            <ul class="flex-direction-nav">
+                <li><a class="flex-prev" href="#">Previous</a>
+                </li><li><a class="flex-next" href="#">Next</a>
+                </li>
+            </ul>
+        </div>
+        <div id="slide-right" class="span4">
+            <h3>Most Popular News</h3>
+            {% set posts=entries('posts').where('category_id','1').get() %}
+            <ul>
+                {% for post in posts %}
+                    <li><a href="{{ post.route('view') }}" title="{{ post.title }}" rel="bookmark"><h4 class="post-title">{{ post.title }}</h4></a></li>
+                {% endfor %}
+            </ul>
+            {{ posts.render|raw }}
+            <div class="clear"></div>
+        </div>
+    </div>
+
+    <!-- -->
+
+    {% include "anomaly.theme.demo::module/posts" %}
+
+
+{% endblock %}
+
+

@@ -1,0 +1,67 @@
+<html lang="{{ config('app.locale') }}">
+<meta charset="UTF-8" />
+<link rel="shortcut icon" href="{{ image_url('anomaly.theme.demo::images/favicon.png')}}" title="Favicon"/>
+<meta name="viewport" content="width=device-width" />
+
+<head>
+  {% block metadata %}
+      {% include'anomaly.theme.demo::partials/metadata' %}
+  {% endblock %}
+</head>
+
+
+<body>
+
+<div id="page" >
+  {% include "anomaly.theme.demo::partials/navigation" %}
+    <div id="intr" class="container">
+
+        {% include "anomaly.theme.demo::partials/BreakingNews" %}
+    </div>
+  <div id="headline" class="container">
+      {% include "anomaly.theme.demo::partials/messages" %}
+      {% include "anomaly.theme.demo::partials/breadcrumbs" %}
+
+
+
+  </div>
+
+
+    <div id="content" class="container">
+
+
+
+
+
+         <div id="main" class="row-fluid">
+             <div id="main-left" class="span8">
+
+                 <!------ ---- -->
+
+                     {% block content %}{% endblock %}
+
+
+
+
+             </div>
+                {% include "anomaly.theme.demo::partials/categories" %}
+
+
+
+         </div>
+      </div>
+
+
+
+
+
+          {% include "anomaly.theme.demo::partials/footer" %}</div>
+{% include "anomaly.theme.demo::partials/scripts" %}
+
+
+
+
+
+
+</body>
+</html>
